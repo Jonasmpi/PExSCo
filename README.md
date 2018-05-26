@@ -1,2 +1,2 @@
-# SCoPEx
-Smart Contracts for Process Execution
+# PExSCo
+Process Execution for Smart Contracts
