@@ -19,13 +19,11 @@ contract ContractCollaborationManager{
         string activity;
         Tasktype tasktype;
         uint[] requirements;
-    }
+    }    
     
-    //mapping: refer to as a hashtable key/value types: mapping ist binding Type to zb Struct"
     mapping(uint => Task) tasks;
-    uint[] public tasksArray;
+    uint[] public tasksArray;    
     
-    //mapping: CollaboratorListe
     mapping(uint => Collaborator) collaborators;
     uint[] public collaboratorArray;
     
@@ -35,7 +33,7 @@ contract ContractCollaborationManager{
     }
     
     /*
-    * Only the Contractcreator can add Collaborator
+    * @param: Address of the Collaborator and his Organisation
     */
     function addCollaborator(address _collaborator, string _organisation) public {
         //Only ContractOwner can add collaborators
@@ -46,7 +44,7 @@ contract ContractCollaborationManager{
         collaboratorArray.push(collaboratorArray.length);
     }
     /*
-    * @Param: Creates a State with status false and costum description
+    * @Param: Creates a Task 
     */
     function createTask(string _activity,address _taskresource, Tasktype _tasktype, uint[] _requirements) public {
         require(msg.sender == supervisor);
@@ -120,7 +118,10 @@ contract ContractCollaborationManager{
             }
         }
     }
-    
+    /*
+    * @param: ID of a Task
+    * @returns: bool value if task is completed
+    */    
     function isTaskCompletedById(uint _id) public view returns (bool success){
         if(tasks[_id].completed == true){
             return true;
@@ -129,7 +130,7 @@ contract ContractCollaborationManager{
     }
     /*
     * @param: Id of a State
-    * @returns: status und beschreibung des States
+    * @returns: status and description of the Task
     */
     function getTaskById(uint _id) public view returns(bool status,
     string description,address stateowner, Tasktype tasktype,
@@ -148,7 +149,9 @@ contract ContractCollaborationManager{
         return taskcount;
     }
  
-    
+    /*
+    * Initialise the contract with 0 tasks and saves the creator as owner
+    */
     constructor() public{
         taskcount = 0;
         supervisor = msg.sender;
