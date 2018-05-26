@@ -43,6 +43,7 @@ contract ContractCollaborationManager{
         collaborator.organisation = _organisation;
         collaboratorArray.push(collaboratorArray.length);
     }
+    
     /*
     * @Param: Creates a Task 
     */
@@ -64,6 +65,7 @@ contract ContractCollaborationManager{
     function getCollaborators() view public returns(uint[]){
         return collaboratorArray;
     }
+    
     /*
     * @Param: sets a Task on completed if resource equal to taskresource
     */
@@ -128,6 +130,7 @@ contract ContractCollaborationManager{
         }
         else return false;
     }
+    
     /*
     * @param: Id of a State
     * @returns: status and description of the Task
@@ -136,12 +139,12 @@ contract ContractCollaborationManager{
     string description,address stateowner, Tasktype tasktype,
     uint[] requirements){
         return(tasks[_id].completed,tasks[_id].activity,tasks[_id].taskresource,tasks[_id].tasktype,tasks[_id].requirements);
-        
     }
     
     function getCollaboratorCount() public view returns (uint){
         return collabcount;
     }
+    
     /*
     * @Returns: Amout of States in the Collaboration
     */
